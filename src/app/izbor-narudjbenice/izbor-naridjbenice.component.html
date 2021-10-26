@@ -1,0 +1,63 @@
+
+<br><br>
+<div class="container">
+  <form  (submit)="onPronadji(formaPronadji)" #formaPronadji="ngForm">
+    <div class="row">
+      <div class="col-md-3">
+        <label for="idNar" class="form-control">IDNarudjbenice</label>
+      </div>
+      <div class="col-md-3">
+        <label for="datumKreiranja" class="form-control">Datum kreiranja</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <input
+        type="number"
+        id="idNar"
+        class="form-control"
+        name="idNar"
+        ngModel
+        >
+      </div>
+      <div class="col-md-3">
+        <input
+        type="date"
+        id="datumKreiranja"
+        class="form-control"
+        name="datumKreiranja"
+        ngModel
+        >
+      </div>
+      <div class="col-md-3">
+        <button type="button"
+        class="btn btn-danger"
+        type="submit">Pronadji</button>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <table class="table table-hover" *ngIf="narudjbenice.length > 0">
+    <thead>
+    <tr>
+      <th>IDNarudjbenice</th>
+      <th>DatumKreiranja</th>
+      <th>Status</th>
+      <th>DatumPotvrde</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let narudjbenica of narudjbenice  | searchfilter1: idNar : datumKreiranja  let i=index ;" (click)="onRowSelected(narudjbenica, i, narudjbenica.idNarudjbenice)" [ngClass]="{selected: izabranIndex === i}" >
+      <td>{{ narudjbenica.idNarudjbenice }}</td>
+      <td>{{ narudjbenica.datumKreiranja }} </td>
+      <td>{{ narudjbenica.status }}</td>
+      <td>{{ narudjbenica.datumPotvrde}}</td>
+    </tr>
+  </tbody>
+
+  <p *ngIf="narudjbenice.length <= 0">Nema kreirane narudjbenice</p>
+  <p *ngIf="(narudjbenice |searchfilter1: idNar : datumKreiranja).length === 0">Ne postoi narudjbenica sa tim vrednostima</p>
+  <a type="button" class="btn btn-default" [routerLink]="['/potvrdi', this.id]">Potvrdi</a>
+  <a type="button" class="btn btn-default" routerLink="/izaberi">Odustani</a>
+</table>
+</div>

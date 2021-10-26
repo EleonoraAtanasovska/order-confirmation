@@ -1,0 +1,97 @@
+<div class="container">
+  <br><br>
+  <form (submit)="onPotvrdi(formaPotvrdi)" #formaPotvrdi="ngForm">
+  <a type="button" class="btn btn-danger" routerLink="/izbor">Izaberi narudjbenicu</a>
+  <hr>
+  <div class="row">
+    <div class="col-md-3 form-group">
+        <label for="id" class="form-control">ID Narudzbenice:</label>
+    </div>
+    <div class="col-md-4">
+      <input
+      name="idNarudjbenice"
+      type="number"
+      id="id"
+      class="form-control"
+      [disabled] = true
+      [ngModel] ="narudjbenica.idNarudjbenice">
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+        <label for="datum" class="form-control">Datum kreiranja:</label>
+    </div>
+    <div class="col-md-4">
+      <input
+      name="datumKreiranja"
+      type="string"
+      id="datumKreiranja"
+      class="form-control"
+      [disabled] = true
+      [ngModel]= "narudjbenica.datumKreiranja">
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+        <label for="status" class="form-control">Status:</label>
+    </div>
+    <div class="col-md-4">
+      <input
+      name="status"
+      type="string"
+      id="status"
+      class="form-control"
+      [disabled] = true
+      [ngModel]= "narudjbenica.status">
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 form-group">
+        <label for="datum-potvrde" class="form-control">Datum potvrde:</label>
+    </div>
+    <div class="col-md-4">
+      <input
+      name="datumPotvrde"
+      type="string"
+      id="datum-potvrde"
+      class="form-control"
+      [disabled] = true
+      [ngModel]= "narudjbenica.datumPotvrde">
+  </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-3 form-group">
+        <label for="statusNar" class="form-control">Status narudjbenice:</label>
+    </div>
+    <div class="col-md-3">
+      <label for="datumPot" class="form-control">Datum potvrde:</label>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-md-3 form-group">
+        <select class="form-control" name="statusDropdown" id="statusDropdown" [ngModel]= "narudjbenica.status"> >
+          <option value="Nepotvrdjena" >Nepotvrdjena</option>
+          <option value="Potvrdjena">Potvrdjena</option>
+        </select>
+
+      </div>
+      <div class="col-md-3">
+        <input type="date" id="updatedDatumPotvrde" name="updatedDatumPotvrde" class="form-control"  [ngModel]= "narudjbenica.datumPotvrde">>
+      </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-md-3 form-group">
+        <button type="submit"  id = "btnPotvrdi" disabled="disabled" class="btn btn-default" >Potvrdi
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button type="button"  class="btn btn-default"  (click)="onOdustani(formaPotvrdi)" routerLink="/izaberi">Odustani
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
